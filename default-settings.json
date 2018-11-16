@@ -1,0 +1,10 @@
+{
+  "prefix": ">",
+  "welcomeChannel": null,
+  "welcomeMessage": "welcome ${member}",
+  "loggingChannel": null,
+  "administratorRoles": [],
+  "moderatorRoles": [],
+  "memberRoles": [],
+  "selfRoles": {}
+}

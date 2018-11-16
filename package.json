@@ -1,0 +1,27 @@
+{
+  "name": "zeca-discord-bot",
+  "version": "1.0.0",
+  "description": "a simple moderation bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nf start"
+  },
+  "author": "Vitor Cortez <vitor.a.cortez@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite-pool": "^0.1.2",
+    "common-tags": "^1.8.0",
+    "discord.js": "^11.3.2",
+    "enmap": "^4.3.3",
+    "foreman": "^3.0.1",
+    "winston": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vekat/zeca-discord-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vekat/zeca-discord-bot/issues"
+  },
+  "homepage": "https://github.com/vekat/zeca-discord-bot#readme"
+}
