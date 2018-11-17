@@ -38,7 +38,7 @@ module.exports = async (client, message) => {
 
   const permission = getPermission(message, settings)
 
-  client.logger.debug(`user '${message.author}' (${permission}) called command '${command.meta.name}' (${command.meta.level}) with ${args.length} args`)
+  client.logger.debug(`user '${message.author.id}' (${permission}) called command '${command.meta.name}' (${command.meta.level}) with ${args.length} args`)
 
   return command.run(client, message, args, permission)
 }

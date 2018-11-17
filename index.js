@@ -48,7 +48,7 @@ for (const file of commandFiles) {
 client.login(client.config.token)
 
 process.once('SIGINT', () => {
-  client.logger.info('killing', 'sigint')
+  client.logger.silly('killing client with sigint')
   client.destroy()
   if (client.chatter) {
     client.chatter.dataStream.close()
