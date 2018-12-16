@@ -1,4 +1,18 @@
+const logger = require('./logger')
+
 const util = exports
+
+/**
+ * Default command metadata.
+ */
+util.commandMeta = {
+  'level': 0,
+  'usage': '',
+  'aliases': [],
+  'hidden': true,
+  'category': 'none',
+  'description': 'none'
+}
 
 /**
  * Regular expression to match URLs.
