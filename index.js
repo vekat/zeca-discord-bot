@@ -3,13 +3,14 @@ const Enmap = require('enmap')
 const path = require('path')
 const fs = require('fs')
 
+const logger = require('./logger')
+const { loadCommand } = require('./util')
+
 const client = new Discord.Client()
 
 const { BOT_TOKEN: token } = process.env
 const defaults = require('./default-settings.json')
-const basemeta = require('./default-command.json')
 
-client.logger = require('./logger')
 client.config = { token, defaults }
 client.settings = new Enmap({ name: 'settings' })
 
@@ -23,32 +24,20 @@ for (let file of eventFiles) {
   if (!file.endsWith('.js')) continue
   const eventName = file.split('.')[0]
   const eventHandler = require(`./events/${file}`)
-  client.logger.info(`registering event : ${eventName}`)
+  logger.debug(`registering event : ${eventName}`)
   client.on(eventName, eventHandler.bind(null, client))
 }
 
 const commandFiles = fs.readdirSync(path.resolve(__dirname, 'commands/'))
 
 for (const file of commandFiles) {
-  if (!file.endsWith('.js')) continue
-  const command = require(`./commands/${file}`)
-  command.meta = {
-    ...basemeta,
-    name: file.split('.')[0],
-    ...command.meta
-  }
-  const commandName = command.meta.name
-  command.meta.aliases.forEach((alias) => {
-    client.aliases.set(alias, commandName)
-  })
-  client.logger.info(`loading command : ${commandName}`)
-  client.commands.set(commandName, command)
+  loadCommand(client, file)
 }
 
 client.login(client.config.token)
 
 process.once('SIGINT', () => {
-  client.logger.silly('killing client with sigint')
+  logger.silly('killing client with sigint')
   client.destroy()
   if (client.chatter) {
     client.chatter.dataStream.close()
